@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <graphics.h>
 #include <math.h>
 
 struct Datos {
@@ -29,7 +28,7 @@ int raiz;
 
 int main() {
 	srand(time(NULL));
-	initwindow(1200, 1000);
+	// initwindow(1200, 1000);
 	Menu();
 }
 
@@ -51,15 +50,15 @@ void Menu() {
 			cont++;
 		}
 	} while (cont != tam);
-	outtextxy(550, 50, "ARBOL ABB");
-	outtextxy(650, 50, "raiz");
+	// outtextxy(550, 50, "ARBOL ABB");
+	// outtextxy(650, 50, "raiz");
 	printf("\n");
 	printf("Cantidad de elementos: %d\n", cardinalidad);
 
-	outtextxy(100, 850, "Cantidad de elementos:");
-	itoa(cardinalidad, card_cx, 10);
-	outtextxy(275, 850, card_cx);
-	system("pause");
+	// outtextxy(100, 850, "Cantidad de elementos:");
+	// itoa(cardinalidad, card_cx, 10);
+	// outtextxy(275, 850, card_cx);
+	// system("pause");
 }
 
 Nodo* CrearNodo(Datos datos) {
@@ -77,57 +76,57 @@ int Insertar(Nodo*& arbol, Datos datos, int nivel, int dx, int dy) {
 		cardinalidad += 1;
 		Nodo* nuevo_nodo = CrearNodo(datos);
 		arbol = nuevo_nodo;
-		setcolor(LIGHTBLUE);
-		setfillstyle(1, LIGHTBLUE);
-		circle(dx + 5, dy + 5, 15);
-		floodfill(dx + 5, dy + 5, LIGHTBLUE);
-		setbkcolor(LIGHTBLUE);
-		setcolor(WHITE);
+		// setcolor(LIGHTBLUE);
+		// setfillstyle(1, LIGHTBLUE);
+		// circle(dx + 5, dy + 5, 15);
+		// floodfill(dx + 5, dy + 5, LIGHTBLUE);
+		// setbkcolor(LIGHTBLUE);
+		// setcolor(WHITE);
 		sprintf(cx, "%d", arbol->datos -> dato1);
-		outtextxy(dx, dy, cx);
+		// outtextxy(dx, dy, cx);
 	} else {
 		valorRaiz = arbol->datos->dato1;
 		if (datos.dato1 < valorRaiz) {
-			setcolor(YELLOW);
-			line(dx, dy, dx - (300 / (nivel + 1)), dy + 50);
-			circle(dx + 5, dy + 5, 16);
+			// setcolor(YELLOW);
+			// line(dx, dy, dx - (300 / (nivel + 1)), dy + 50);
+			// circle(dx + 5, dy + 5, 16);
 			Insertar(arbol->izq, datos, nivel + 1, dx - (300 / (nivel + 1)), (dy + 50));
 		} else {
-			setcolor(YELLOW);
-			line(dx, dy, dx + (300 / (nivel + 1)), dy + 50);
-			circle(dx + 5, dy + 5, 16);
+			// setcolor(YELLOW);
+			// line(dx, dy, dx + (300 / (nivel + 1)), dy + 50);
+			// circle(dx + 5, dy + 5, 16);
 			Insertar(arbol->der, datos, nivel + 1, dx + (300 / (nivel + 1)), (dy + 50));
 		}
 	}
 	return valorRaiz;
 }
 
-void Mostrar(Nodo* arbol, int nivel, int dx, int dy) {
-	char cx[100];
-	if (arbol == NULL) {
-		return;
-	} else {
-		printf("Nivel: %d ", nivel);
-		printf("Dato1: %d ", arbol->datos->dato1);
-		// Mostrar otros datos de la estructura
-		setcolor(YELLOW);
-		if (arbol->izq != NULL) {
-			line(dx, dy, dx - (300 / (nivel + 1)), dy + 50);
-		}
-		if (arbol->der != NULL) {
-			line(dx, dy, dx + (300 / (nivel + 1)), dy + 50);
-		}
-		setcolor(LIGHTBLUE);
-		setfillstyle(1, LIGHTBLUE);
-		circle(dx + 5, dy + 5, 15);
-		setcolor(WHITE);
-		sprintf(cx, "%d", arbol->datos->dato1);
-		outtextxy(dx, dy, cx);
-		printf("dx: %d, dy: %d\n", dx, dy);
-		Mostrar(arbol->izq, nivel + 1, dx - (300 / (nivel + 1)), (dy + 50));
-		Mostrar(arbol->der, nivel + 1, dx + (300 / (nivel + 1)), (dy + 50));
-	}
-}
+// void Mostrar(Nodo* arbol, int nivel, int dx, int dy) {
+// 	char cx[100];
+// 	if (arbol == NULL) {
+// 		return;
+// 	} else {
+// 		printf("Nivel: %d ", nivel);
+// 		printf("Dato1: %d ", arbol->datos->dato1);
+// 		// Mostrar otros datos de la estructura
+// 		setcolor(YELLOW);
+// 		if (arbol->izq != NULL) {
+// 			line(dx, dy, dx - (300 / (nivel + 1)), dy + 50);
+// 		}
+// 		if (arbol->der != NULL) {
+// 			line(dx, dy, dx + (300 / (nivel + 1)), dy + 50);
+// 		}
+// 		setcolor(LIGHTBLUE);
+// 		setfillstyle(1, LIGHTBLUE);
+// 		circle(dx + 5, dy + 5, 15);
+// 		setcolor(WHITE);
+// 		sprintf(cx, "%d", arbol->datos->dato1);
+// 		outtextxy(dx, dy, cx);
+// 		printf("dx: %d, dy: %d\n", dx, dy);
+// 		Mostrar(arbol->izq, nivel + 1, dx - (300 / (nivel + 1)), (dy + 50));
+// 		Mostrar(arbol->der, nivel + 1, dx + (300 / (nivel + 1)), (dy + 50));
+// 	}
+// }
 
 bool Busqueda(Nodo* arbol, Datos datos) {
 	if (arbol == NULL) {
